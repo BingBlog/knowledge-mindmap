@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .slidein {
+        animation-duration: 3s;
+        animation-name: slidein;
+        animation-iteration-count: 3;
+        animation-direction: alternate;
+    }
+
+@keyframes slidein {
+  from {
+    margin-left:100%;
+    width:300%
+  }
+
+  to {
+   margin-left:0%;
+   width:100%;
+ }
+}
+</style>
+<body>
+    animation
+    <div id="watchme"></div>
+    <div id="output"></div>
+</body>
+<script>
+    function listener(e) {
+        console.log(e);
+        var l = document.createElement("li");
+        switch(e.type) {
+            case "animationstart":
+            l.innerHTML = "Started: elapsed time is " + e.elapsedTime;
+            break;
+            case "animationend":
+            l.innerHTML = "Ended: elapsed time is " + e.elapsedTime;
+            break;
+            case "animationiteration":
+            l.innerHTML = "New loop started at time " + e.elapsedTime;
+            break;
+        }
+        document.getElementById("output").appendChild(l);
+    }
+
+    var e = document.getElementById("watchme");
+    e.addEventListener("animationstart", listener, false);
+    e.addEventListener("animationend", listener, false);
+    e.addEventListener("animationiteration", listener, false);
+
+    setTimeout(() => {
+        e.className = "slidein";
+    }, 4000);
+    
+</script>
+</html>

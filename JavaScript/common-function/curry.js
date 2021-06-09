@@ -93,6 +93,25 @@ function addInfinite_() {
     return args.reduce((sum, item) => sum + item, 0);
 }
 
+
+var currying = function(fn) {
+    console.log(arguments)
+var _args = [];
+
+return function cb() {
+
+    if (arguments.length === 0) {
+        return fn.apply(this, _args);
+    }
+
+    Array.prototype.push.apply(_args, arguments);
+
+    return cb;
+}
+}
+
+
+
 // 更简洁的写法
 var curry = fn =>
     judge = (...args) =>
