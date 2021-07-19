@@ -16,38 +16,13 @@
 // n n % 2的j次方 + (n - n )
 
 var countBits = function (n) {
-    let cache = {
-        0: 0,
-        1: 1
-    };
-
-    let cachePow = {};
-
-    let result = [];
-    for (let i = 0; i <= n; i++) {
-        result.push()
+    let result = [0];
+    for (let i = 1; i <= n; i++) {
+        result[i] = result[i >> 1] + (i & 1);
     }
 
-    function numbersOfOne(n) {
-        if (cache[n]) {
-            return cache[n];
-        }
-
-        let pow = getPow(n);
-        return 1 + numbersOfOne(n % Math.pow(2, pow));
-
-    }
-
-    function getPow(n) {
-        if (cachePow[n]) {
-            return cachePow[n];
-        }
-        let pow = 0;
-        while (n < Math.pow(2, pow)) {
-            pow += 1;
-        }
-        cachePow[n] = pow;
-        return pow; // 9
-    }
-
+    return result;
 };
+
+
+console.log(countBits(9));
