@@ -1,0 +1,7 @@
+jsonCallback0({
+    "status": 0,
+    "data": {
+        "name": "bing",
+        "age": 29
+    }
+});
